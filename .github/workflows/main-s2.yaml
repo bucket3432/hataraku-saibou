@@ -48,3 +48,4 @@ jobs:
         with:
           arguments: mux.${{ matrix.episode }}
           build-root-directory: main/s2
+          cache-disabled: true
