@@ -16,6 +16,7 @@ jobs:
       matrix:
         episode: ["01", "02", "03", "04", "05", "06", "07", "08"]
     runs-on: ubuntu-latest
+    continue-on-error: true
 
     steps:
       - uses: actions/checkout@v2
