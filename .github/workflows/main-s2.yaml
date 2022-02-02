@@ -24,7 +24,7 @@ jobs:
         with:
           repository: ${{ secrets.FONTS_REPO }}
           ref: hataraku-saibou
-          ssh: ${{ secrets.FONTS_KEY }}
+          ssh-key: ${{ secrets.FONTS_KEY }}
       - name: Configure fonts
         run: echo 'FONTSDIR=${{ env.GITHUB_WORKSPACE }}/fonts' >private.properties
       - name: Set up JDK 11
