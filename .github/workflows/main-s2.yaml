@@ -42,9 +42,9 @@ jobs:
           ffmpeg -t 10 -s 1600x900 -f rawvideo -pix_fmt yuv420p -r 24000/1001 -i /dev/zero -f lavfi -i anullsrc=channel_layout=stereo:sample_rate=44100 -shortest blank.mp4
           mkvmerge -o 'Hataraku Saibou 2 - ${{ matrix.episode }} (Premux).mkv' blank.mp4
           rm blank.mp4
-      - name: Mux with SubKt
-        uses: gradle/gradle-build-action@v2
+      - uses: gradle/gradle-build-action@v2
         with:
-          arguments: mux.${{ matrix.episode }}
           build-root-directory: main/s2
           gradle-version: "6.5"
+      - name: Mux with SubKt
+        run: ./gradlew mux.${{ matrix.episode }}
