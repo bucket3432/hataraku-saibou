@@ -3,6 +3,7 @@ name: Mux main S2
 on:
   push:
     paths:
+      - ".github/workflows/main-s2.yaml"
       - "main/s2/**"
 
 defaults:
