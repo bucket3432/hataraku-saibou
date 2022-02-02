@@ -11,7 +11,7 @@ defaults:
 
 jobs:
   mux:
-    strategy: 
+    strategy:
       matrix:
         episode: ["01", "02", "03", "04", "05", "06", "07", "08"]
     runs-on: ubuntu-latest
@@ -21,9 +21,9 @@ jobs:
       - name: Checkout fonts
         uses: actions/checkout@v2
         with:
-          repository: ${{ secrets.fonts_repo }}
+          repository: ${{ secrets.FONTS_REPO }}
           ref: hataraku-saibou
-          ssh: ${{ secrets.fonts_key }}
+          ssh: ${{ secrets.FONTS_KEY }}
       - name: Configure fonts
         run: echo 'FONTSDIR=${{ env.GITHUB_WORKSPACE }}/fonts' >private.properties
       - name: Set up JDK 11
