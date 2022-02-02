@@ -47,3 +47,4 @@ jobs:
         with:
           arguments: mux.${{ matrix.episode }}
           build-root-directory: main/s2
+          gradle-version: "6.5"
