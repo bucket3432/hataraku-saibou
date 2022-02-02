@@ -32,8 +32,9 @@ jobs:
         with:
           java-version: "11"
           distribution: "temurin"
-      - name: Validate Gradle wrapper
-        uses: gradle/wrapper-validation-action@v1
+# This Action cannot validate in subdirectories, so ignore for now.
+#      - name: Validate Gradle wrapper
+#        uses: gradle/wrapper-validation-action@v1
       - name: Install dependencies
         run: sudo apt install -y ffmpeg mkvtoolnix
       - name: Create dummy video
