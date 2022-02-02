@@ -46,3 +46,4 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: mux.${{ matrix.episode }}
+          build-root-directory: main/s2
