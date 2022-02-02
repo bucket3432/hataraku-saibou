@@ -25,6 +25,7 @@ jobs:
           repository: ${{ secrets.FONTS_REPO }}
           ref: hataraku-saibou
           ssh-key: ${{ secrets.FONTS_KEY }}
+          path: fonts
       - name: Configure fonts
         run: echo 'FONTSDIR=${{ github.workspace }}/fonts' >private.properties
       - name: Set up JDK 11
@@ -32,9 +33,8 @@ jobs:
         with:
           java-version: "11"
           distribution: "temurin"
-# This Action cannot validate in subdirectories, so ignore for now.
-#      - name: Validate Gradle wrapper
-#        uses: gradle/wrapper-validation-action@v1
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@v1
       - name: Install dependencies
         run: sudo apt install -y ffmpeg mkvtoolnix
       - name: Create dummy video
@@ -42,10 +42,9 @@ jobs:
           ffmpeg -t 10 -s 1600x900 -f rawvideo -pix_fmt yuv420p -r 24000/1001 -i /dev/zero -f lavfi -i anullsrc=channel_layout=stereo:sample_rate=44100 -shortest blank.mp4
           mkvmerge -o 'Hataraku Saibou 2 - ${{ matrix.episode }} (Premux).mkv' blank.mp4
           rm blank.mp4
-#      - uses: gradle/gradle-build-action@v2
-#        with:
-#          build-root-directory: main/s2
-#          gradle-version: "6.5"
+      - uses: gradle/gradle-build-action@v2
+        with:
+          build-root-directory: main/s2
       - name: Mux with SubKt
         run: ./gradlew mux.${{ matrix.episode }}
         working-directory: main/s2
