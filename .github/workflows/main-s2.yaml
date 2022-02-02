@@ -41,7 +41,7 @@ jobs:
       - name: Create dummy video
         run: |
           ffmpeg -t 10 -s 1600x900 -f rawvideo -pix_fmt yuv420p -r 24000/1001 -i /dev/zero -f lavfi -i anullsrc=channel_layout=stereo:sample_rate=44100 -shortest blank.mp4
-          mkvmerge -o 'Hataraku Saibou 2 - ${{ matrix.episode }} (Premux).mkv' blank.mp4
+          mkvmerge -o '${{ matrix.episode }}/Hataraku Saibou 2 - ${{ matrix.episode }} (Premux).mkv' blank.mp4
           rm blank.mp4
       - name: Mux with SubKt
         uses: gradle/gradle-build-action@v2
